@@ -1,0 +1,13 @@
+{
+	"name": "orderedmap",
+	"description": "A simple ordered map implementation.",
+	"copyright": "Copyright © 2014, Tim Keating",
+	"license": "Boost",
+	"authors": ["Tim Keating"],
+	"configurations": [
+		{
+			"name": "library",
+			"targetType": "library"
+		}
+	]
+}
