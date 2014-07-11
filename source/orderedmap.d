@@ -1,6 +1,7 @@
 module orderedmap;
 
 import std.algorithm;
+import std.array;
 import std.container;
 import std.range;
 
@@ -15,6 +16,20 @@ public class OrderedMap(T)
 		foreach (key; _orderedKeys)
 		{
 			result = dg(_hash[key]);
+
+			if (result)
+				break;
+		}
+
+		return result;
+	}
+
+	public int opApply(int delegate(const string, ref T) dg)
+	{
+		int result = 0;
+		foreach (key; _orderedKeys)
+		{
+			result = dg(key, _hash[key]);
 
 			if (result)
 				break;
@@ -73,4 +88,20 @@ unittest
 	map.remove("foo");
 	assert("foo" !in map);
 	assert(map.length == 1);
+
+	// Test that it actually preserves the insert order
+	map["zyx"] = 99;
+	map["abc"] = 1;
+	map["bar"] = 4; // Should move the existing key to the end
+
+	auto testKeys = ["zyx", "abc", "bar"];
+	auto testVals = [99, 1, 4];
+	foreach (key, val; map)
+	{
+		assert(key == testKeys[0]);
+		assert(val == testVals[0]);
+
+		testKeys.popFront();
+		testVals.popFront();
+	}
 }
