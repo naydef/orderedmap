@@ -24,7 +24,7 @@ public class OrderedMap(T)
 		return result;
 	}
 
-	public int opApply(int delegate(const string, ref T) dg)
+	public int opApply(int delegate(ref string, ref T) dg)
 	{
 		int result = 0;
 		foreach (key; _orderedKeys)
