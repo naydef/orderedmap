@@ -1,4 +1,4 @@
-module orderedmap_v2;
+module orderedmap;
 
 import std.algorithm;
 import std.array;
