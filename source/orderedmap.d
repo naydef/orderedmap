@@ -1,11 +1,11 @@
-module orderedmap;
+module orderedmap_v2;
 
 import std.algorithm;
 import std.array;
 import std.container;
 import std.range;
 
-public class OrderedMap(T)
+public struct OrderedMap(T)
 {
 	private DList!string _orderedKeys;
 	private T[string] _hash;
@@ -77,7 +77,7 @@ public class OrderedMap(T)
 
 unittest 
 {
-	auto map = new OrderedMap!int();
+	OrderedMap!int map;
 	map["foo"] = 1;
 	map["bar"] = 2;
 	map["bar"] = 3;
